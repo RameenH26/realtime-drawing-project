@@ -39,9 +39,9 @@ function gotPoses(results) {
     } 
 }
 function draw() {
- background('#f0ebc7'); 
+ background('#b8d3ff'); 
    textSize(fontSize);
-   text("hello", 120, 150);
+   text("HI", 120, 150);
 }
 
 function modelLoaded() {
