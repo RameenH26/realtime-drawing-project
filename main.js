@@ -4,10 +4,10 @@ function preload() {
 function setup() {
     video = createCapture(VIDEO);
     video.size(300, 300);
-    video.position(200, 180);
+    video.position(200, 100);
 
  canvas = createCanvas(300, 300);
- canvas.position(800, 180);
+ canvas.position(600, 100);
 
  //posenet code
  poseNet = ml5.poseNet(video, modelLoaded);
@@ -18,6 +18,8 @@ leftWristY = 0;
 
 rightWristX = 0;
 rightWristY = 0;
+
+leftEyeX = 0;
 
 fontSize = 0;
 function gotPoses(results) {
@@ -34,17 +36,22 @@ function gotPoses(results) {
         console.log("right wrist x =" + rightWristX);
         console.log("right wrist y =" + rightWristY);
 
+        leftEyeX = floor(results[0].pose.leftEye.x);
+        console.log("left eye x =" + leftEyeX);
+
         fontSize = leftWristX - rightWristX;
         console.log(fontSize);
     } 
 }
+
+
 function draw() {
- background('#b8d3ff'); 
-   textSize(fontSize);
-   text("HI", 120, 150);
+ background('#b8d3ff');
+ fill(50, leftEyeX, 50);
+ textSize(fontSize);
+ text("HI", 120, 150);
 }
 
 function modelLoaded() {
     console.log("model is loaded");
 }
-
